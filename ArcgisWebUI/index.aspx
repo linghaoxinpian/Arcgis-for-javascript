@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-        </form>
+        </form> 
     </div>
     <div data-options="region:'center',title:'天地图'" style="padding: 5px; background: #eee;">
         <!--Arcgis主面板-->
