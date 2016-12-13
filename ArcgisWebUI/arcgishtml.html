@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="http://jsapi.thinkgis.cn/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" href="http://jsapi.thinkgis.cn/esri/css/esri.css">
+    <script src="http://jsapi.thinkgis.cn/init.js"></script>
+    <style>
+        body {
+            background-color: #FFF;
+            overflow: auto;
+            font-family: "Trebuchet MS";
+        }
+
+        #BasemapToggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+        }
+
+        html, body, #map {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        #HomeButton {
+            position: absolute;
+            top: 129px;
+            left: 20px;
+            z-index: 50;
+        }
+         #LocateButton {
+            position: absolute;
+            top: 89px;
+            left: 20px;
+            z-index: 50;
+        }
+    </style>
+      
+    <script>
+        var map;
+
+        require(["esri/map",
+
+         "esri/dijit/HomeButton",
+           "esri/dijit/BasemapToggle",
+          "esri/dijit/LocateButton",
+
+
+
+
+            "esri/dijit/BasemapGallery", "esri/arcgis/utils",
+        "dojo/parser",
+
+         "esri/urlUtils",
+         "esri/dijit/Directions",
+
+        "dijit/layout/BorderContainer", "dijit/layout/ContentPane",
+        "dijit/TitlePane",
+        "dojo/domReady!",
+        "esri/dijit/LayerSwipe", "dojo/_base/array"], function (Map,HomeButton,BasemapToggle,LocateButton, BasemapGallery, arcgisUtils, parser, urlUtils, Directions,
+        LayerSwipe, array) {
+            parser.parse();
+            //all requests to route.arcgis.com will proxy to the proxyUrl defined in this object.
+            urlUtils.addProxyRule({
+                urlPrefix: "route.arcgis.com",
+                proxyUrl: "/sproxy/"
+            });
+            urlUtils.addProxyRule({
+                urlPrefix: "traffic.arcgis.com",
+                proxyUrl: "/sproxy/"
+            });
+            map = new Map("map", {
+                basemap: "topo",
+                center: [-105.255, 40.022], // longitude, latitude
+                zoom: 13
+            });
+
+            var home = new HomeButton({
+                map: map
+            }, "HomeButton");
+            home.startup();
+
+            var toggle = new BasemapToggle({
+                map: map,
+                basemap: "satellite"
+            }, "BasemapToggle");
+            toggle.startup();
+
+            geoLocate = new LocateButton({
+                map: map
+            }, "LocateButton");
+            geoLocate.startup();
+
+
+
+
+            var directions = new Directions({
+                map: map
+            }, "dir");
+            directions.startup();
+
+            //add the basemap gallery, in this case we'll display maps from ArcGIS.com including bing maps
+            var basemapGallery = new BasemapGallery({
+                showArcGISBasemaps: true,
+                map: map
+            }, "basemapGallery");
+            basemapGallery.startup();
+
+            basemapGallery.on("error", function (msg) {
+                console.log("basemap gallery error:  ", msg);
+            });
+            var mapDeferred = arcgisUtils.createMap("62702544d70648e593bc05d65180fd64", "map");
+            mapDeferred.then(function (response) {
+
+                var id;
+                var map = response.map;
+                var title = "2009 Obesity Rates";
+
+                //loop through all the operational layers in the web map
+                //to find the one with the specified title;
+                var layers = response.itemInfo.itemData.operationalLayers;
+                array.some(layers, function (layer) {
+                    if (layer.title === title) {
+                        id = layer.id;
+                        if (layer.featureCollection && layer.featureCollection.layers.length) {
+                            id = layer.featureCollection.layers[0].id;
+                        }
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                //get the layer from the map using the id and set it as the swipe layer.
+                if (id) {
+                    var swipeLayer = map.getLayer(id);
+                    var swipeWidget = new LayerSwipe({
+                        type: "vertical",  //Try switching to "scope" or "horizontal"
+                        map: map,
+                        layers: [swipeLayer]
+                    }, "swipeDiv");
+                    swipeWidget.startup();
+                }
+            });
+
+        });
+
+    </script>
+</head>
+
+<body class="map claro">
+    <div data-dojo-type="dijit/layout/BorderContainer"
+         data-dojo-props="design:'headline', gutters:false"
+         style="width:100%;height:100%;margin:0;">
+
+        <div data-dojo-type="dijit/layout/ContentPane"
+             data-dojo-props="region:'right'"
+             style="width:250px;">
+            <div id="dir"></div>
+        </div>
+
+        <div id="map"class="map"
+             data-dojo-type="dijit/layout/ContentPane"
+             data-dojo-props="region:'center'">
+
+            <div id="BasemapToggle"></div>
+            <div id="HomeButton"></div>
+            <div id="LocateButton"></div>
+            <div id="dir" ></div>
+
+
+            <div style="position:absolute; right:20px; top:10px; z-Index:999;">
+                <div data-dojo-type="dijit/TitlePane"
+                     data-dojo-props="title:'更换地图显示', closable:false, open:false">
+                    <div data-dojo-type="dijit/layout/ContentPane" style="width:380px; height:280px; overflow:auto;">
+                        <div id="basemapGallery"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div id="dir"></div>-->
+
+</body>
+</html>

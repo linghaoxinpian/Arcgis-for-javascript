@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcgisWebBLL", "ArcgisWebBLL\ArcgisWebBLL.csproj", "{46240941-6715-4062-88D9-8D863073EAC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcgisWebDAL", "ArcgisWebDAL\ArcgisWebDAL.csproj", "{D69D2C31-B560-4F10-8DC1-AA6DDB4AC24F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcgisWebModel", "ArcgisWebModel\ArcgisWebModel.csproj", "{4A1F3144-D58C-4845-8452-43B3AF902927}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcgisWebUI", "ArcgisWebUI\ArcgisWebUI.csproj", "{F598E3BB-8474-41C9-B7FB-48CE9400D8B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46240941-6715-4062-88D9-8D863073EAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46240941-6715-4062-88D9-8D863073EAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46240941-6715-4062-88D9-8D863073EAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46240941-6715-4062-88D9-8D863073EAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D69D2C31-B560-4F10-8DC1-AA6DDB4AC24F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69D2C31-B560-4F10-8DC1-AA6DDB4AC24F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69D2C31-B560-4F10-8DC1-AA6DDB4AC24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69D2C31-B560-4F10-8DC1-AA6DDB4AC24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A1F3144-D58C-4845-8452-43B3AF902927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1F3144-D58C-4845-8452-43B3AF902927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1F3144-D58C-4845-8452-43B3AF902927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1F3144-D58C-4845-8452-43B3AF902927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F598E3BB-8474-41C9-B7FB-48CE9400D8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F598E3BB-8474-41C9-B7FB-48CE9400D8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F598E3BB-8474-41C9-B7FB-48CE9400D8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F598E3BB-8474-41C9-B7FB-48CE9400D8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
