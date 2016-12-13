@@ -26,7 +26,7 @@ namespace ArcgisWebUI
                 return;
             }
             TextBox1.Text = map.latitude;
-            TextBox2.Text = map.latitude;
+            TextBox2.Text = map.longitude;
             TextBox3.Text = map.elevationvalue;
         }
 

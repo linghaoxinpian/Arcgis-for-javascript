@@ -19,7 +19,8 @@ namespace ArcgisWebBLL
 
         public bool AddMaps(Maps maps)
         {
-            throw new NotImplementedException();
+            MapsDAL mapsDAL = new MapsDAL();
+            return MapsDAL.AddMaps(maps) > 0;
         }
     }
 }

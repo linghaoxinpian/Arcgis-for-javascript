@@ -42,6 +42,21 @@ namespace ArcgisWebDAL
             }
         }
 
-
+        public static int AddMaps(Maps maps)
+        {
+            string connStr = "server=localhost;database=map;user id=root;password=123456;";
+            using(MySqlConnection conn=new MySqlConnection(connStr))
+            {
+                using (MySqlCommand comm = new MySqlCommand("insert into maps values(@a,@b,@c,@d)", conn))
+                {
+                    comm.Parameters.AddWithValue("a", maps.address);
+                    comm.Parameters.AddWithValue("b", maps.longitude);
+                    comm.Parameters.AddWithValue("c", maps.latitude);
+                    comm.Parameters.AddWithValue("d", maps.elevationvalue);
+                    conn.Open();
+                    return comm.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

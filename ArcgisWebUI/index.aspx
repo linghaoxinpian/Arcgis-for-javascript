@@ -18,7 +18,7 @@
 
         <form id="form1" runat="server" style="width: 300px; height: 772px;">
             <div id="aa" class="easyui-accordion" style="width: 300px; height: 772px;">
-                <div title="查找地点" data-options="iconCls:'icon-save'" style="overflow: auto; padding: 10px; width: 300px;">
+                <div title="录入地点" data-options="iconCls:'icon-save'" style="overflow: auto; padding: 10px; width: 300px;">
                     <div style="background-color: chartreuse; padding-left: 20px;">
                         <asp:Label ID="Label4" runat="server" Text="地点"></asp:Label>
                         <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
@@ -36,7 +36,7 @@
                         <asp:Button ID="btnAdd" runat="server" Text="添加" OnClick="btnAdd_Click" Width="196px" />
                     </div>
                 </div>
-                <div title="录入地点" data-options="iconCls:'icon-reload',selected:true" style="padding: 10px; width: 300px;">
+                <div title="查询地点" data-options="iconCls:'icon-reload',selected:true" style="padding: 10px; width: 300px;">
                     <div style="background-color: aquamarine; padding-left: 20px;">
                         <asp:TextBox ID="txtAddress" runat="server">上海海洋大学</asp:TextBox>
                         <asp:Button ID="btnSearch" runat="server" Text="查询" OnClick="btnSearch_Click" Width="173px" />
